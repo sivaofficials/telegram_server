@@ -58,14 +58,12 @@ def rec1():
 def rec():
    if request.method == 'POST':
       text_field_value = request.form.get('text_field')
-      file_id=User.rec(text_field_value)
-  
-      
+      file_id=User.rec(text_field_value)      
       chat_id= app.config['chat_id']
       url_send_document= app.config['url_send_documentd']
       data1=telegram.recvice_files(chat_id,file_id,url_send_document)
-      bg =User.insert2(bytes(data1))
-      return file_id
+      User.insert2(data1)
+      return redirect("/upload")
 
 
 

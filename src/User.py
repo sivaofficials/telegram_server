@@ -21,13 +21,10 @@ class User:
 
     @staticmethod
     def rec(name):
-        result_cursor = users.find({"file_name": name}, {'_id':0,"file_id": 1})
-        result_list = [
-            {**doc, 'file_id': str(doc['file_id'])}  # Convert ObjectId to string
-            for doc in result_cursor
-        ]
+        result_cursor = users.find_one({"file_name": name}, {'_id':0,"file_id": 1})
 
-        return jsonify(result_list[0]['file_id'])
+
+        return result_cursor['file_id']
       
 
     @staticmethod
