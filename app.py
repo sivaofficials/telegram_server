@@ -12,6 +12,8 @@ url_get_updates = f"https://api.telegram.org/bot{token}/getUpdates"
 # Corrected URL for sending a document
 url_send_document = f'https://api.telegram.org/bot{token}/sendDocument'
 
+url_send_document = f'https://api.telegram.org/bot{token}/sendMessage'
+
 path_file="/home/kali/python_instawebsite/server.py"
 document_file_id="BQACAgUAAxkDAAIEjmXWFL2wJmL0EWugXhAEsn0USpbLAAICDQACp9ywVqmpVEjpDkE1NAQ"
  

@@ -17,11 +17,13 @@ app.config['chat_id'] = get_config("chat_id")
 app.config['url_get_updates'] = f"https://api.telegram.org/bot{token}/getUpdates"
 app.config['url_send_documentd'] = f'https://api.telegram.org/bot{token}/sendDocument'
 
+
 instaloader_running = False
 @app.route('/')
-def main_page():
-    session_py = session.pop('session_py', None)
-    return render_template('index.html')
+def show():
+   conten=User.show()
+   print(conten)
+   return render_template('show.html',content=conten)
 
 
 @app.route('/upload')
@@ -41,13 +43,14 @@ def upload_file():
       data =telegram.send_files(chat_id,file_path,url_send_document)
       User.insert1(data)
       os.popen("rm -rf /home/kali/telegram_server/files/*").read()
+
       return redirect("/upload")
    
-@app.route('/show')
-def show():
-   conten=User.show()
-   print(conten)
-   return render_template('show.html',content=conten)
+# @app.route('/show')
+# def show():
+#    conten=User.show()
+#    print(conten)
+#    return render_template('show.html',content=conten)
 
 @app.route('/rec1')
 def rec1():
