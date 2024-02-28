@@ -35,12 +35,14 @@ def upload():
 def upload_file():
    if request.method == 'POST':
       file= request.files['file']
+      text = request.form.get("text")
       filename = secure_filename(file.filename)
       file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
       file.save(file_path)
       chat_id= app.config['chat_id']
       url_send_document= app.config['url_send_documentd']
       data =telegram.send_files(chat_id,file_path,url_send_document)
+      data['seq'] = text
       User.insert1(data)
       os.popen("rm -rf /home/kali/telegram_server/files/*").read()
 
@@ -66,6 +68,20 @@ def rec():
       url_send_document= app.config['url_send_documentd']
       data1=telegram.recvice_files(chat_id,file_id,url_send_document)
       User.insert2(data1)
+      return redirect("/upload")
+   
+
+@app.route('/rec2', methods = ['GET', 'POST'])
+def rec2():
+   if request.method == 'POST':
+      text_field_value = request.form.get('text_field2')
+      file_idk=User.rec2(text_field_value)  
+      file_ids = [doc['file_id'] for doc in file_idk]    
+      chat_id= app.config['chat_id']
+      url_send_document= app.config['url_send_documentd']
+      for file_id in file_ids:
+         data1=telegram.recvice_files(chat_id,file_id,url_send_document)
+         User.insert2(data1)
       return redirect("/upload")
 
 
