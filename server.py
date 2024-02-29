@@ -11,7 +11,7 @@ import json
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # Set a secret key for Flask sessions
-app.config['UPLOAD_FOLDER'] = "/home/kali/telegram_server/files"
+app.config['UPLOAD_FOLDER'] =get_config("upload") 
 token = get_config("bot_token")
 app.config['chat_id'] = get_config("chat_id")
 app.config['url_get_updates'] = f"https://api.telegram.org/bot{token}/getUpdates"

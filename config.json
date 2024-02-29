@@ -2,5 +2,6 @@
     "mongo_connect":"mongodb://192.168.2.8:27017",
     "mongo_database":"server_telegram",
     "bot_token": "6932200060:AAHF5T64BrgwlTuGnxROifxadYFzv5k2spM",
-    "chat_id": "2076098803"
+    "chat_id": "2076098803",
+    "upload":"/home/kali/telegram_server/files"
 }
